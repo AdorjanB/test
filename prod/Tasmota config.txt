@@ -1,0 +1,6 @@
+Initial setup for all devices:
+    Configuration -> Configure Other: Set "Device Name" (one word, but HA will show this field on the Dashboard) and "Friendly name".
+    Configuration -> Configure MQTT: Set the "Host", "User" and "Pw".
+    Console:
+        Setoption19 0 (makes autodiscoverable by HA)
+        TelePeriod 10 (sets the time how often tasmota checks in to HA with updated data)
