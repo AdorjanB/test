@@ -6,3 +6,5 @@ Initial setup for new Tasmota devices:
     Console:
         Setoption19 0 (makes autodiscoverable by HA)
         TelePeriod 10 (sets the time how often tasmota checks in to HA with updated data)
+
+credits: https://www.youtube.com/watch?v=-MovlMV4Ts8

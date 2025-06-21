@@ -8,3 +8,5 @@
     Password: (the one created in the 2nd step)
 5. Install Tasmota (Settings -> Devices and services - > Add Integration)
 6. Continue with adding a tasmota device (Tasmota config.txt)
+
+credits: https://www.youtube.com/watch?v=-MovlMV4Ts8
