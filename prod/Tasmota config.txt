@@ -1,6 +1,8 @@
 Initial setup for new Tasmota devices:
-    Configuration -> Configure Other: Set "Device Name" (one word, but HA will show this field on the Dashboard) and "Friendly name".
-    Configuration -> Configure MQTT: Set the "Host", "User" and "Pw".
+    Open the webUI of the tasmota device (its own IP address)
+    Setup WiFi settings
+    Configuration -> Configure Other: Set "Device Name" (one word, but HA will show this field on the Dashboard) and "Friendly name"
+    Configuration -> Configure MQTT: Set the "Host", "User" and "Pw". (The user should be the one that you created in HA for the MQTT integration)
     Console:
         Setoption19 0 (makes autodiscoverable by HA)
         TelePeriod 10 (sets the time how often tasmota checks in to HA with updated data)
