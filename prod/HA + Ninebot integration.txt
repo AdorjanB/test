@@ -1,0 +1,146 @@
+Forum post to begin with: https://community.home-assistant.io/t/ninebot-scooter-integration/109393
+    Useful repo: https://github.com/JoeyGE0/ninebot-integration
+    Useful code for automated charging with a smart socket: (until row 146)
+
+alias: scooter integration charge
+description: ""
+triggers:
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 0
+      minutes: 20
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 0
+      minutes: 40
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 0
+      minutes: 60
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 0
+      minutes: 80
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 0
+      minutes: 100
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 0
+      minutes: 120
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 0
+      minutes: 140
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 0
+      minutes: 160
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 0
+      minutes: 180
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 0
+      minutes: 200
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 0
+      minutes: 220
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+  - entity_id:
+      - sensor.hive_2_power
+    for:
+      hours: 4
+      minutes: 0
+      seconds: 0
+    above: 39.4
+    trigger: numeric_state
+conditions: []
+actions:
+  - action: homeassistant.disable_config_entry
+    target: {}
+    data:
+      config_entry_id: 01JVQV2CB2NHM7S9G4MNW4HYH0
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - action: homeassistant.enable_config_entry
+    target: {}
+    data:
+      config_entry_id: 01JVQV2CB2NHM7S9G4MNW4HYH0
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - choose:
+      - conditions:
+          - type: is_battery_level
+            condition: device
+            device_id: 07b5cf786e5672f078b804bf8a90c872
+            entity_id: 57f527b8399e253ad7fd73706344503d
+            domain: sensor
+            above: 85
+        sequence:
+          - action: switch.turn_off
+            metadata: {}
+            data: {}
+            target:
+              entity_id: switch.hive_2
+      - conditions:
+          - type: is_battery_level
+            condition: device
+            device_id: 07b5cf786e5672f078b804bf8a90c872
+            entity_id: 57f527b8399e253ad7fd73706344503d
+            domain: sensor
+            below: 85
+        sequence: []
+mode: single
