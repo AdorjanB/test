@@ -1,5 +1,5 @@
 1. Install the "Mosquitto broker" Add-on (Settings -> Add-ons -> Add-on Store)
-2. Create an MQTT user: Settings -> People -> Add person: name it something meaningful e.g. "MQTT_user". Allow login, and create a password
+2. Create an MQTT user: Settings -> People -> Add person: name it something meaningful e.g. "MQTT_user". Allow login and create a password
 3. Reboot HA
 4. Install the "MQTT" integration (Settings -> Devices and services - > Add Integration)
     Broker: core-mosquitto
