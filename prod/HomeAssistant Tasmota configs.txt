@@ -1,0 +1,10 @@
+1. Install the "Mosquitto broker" Add-on (Settings -> Add-ons -> Add-on Store)
+2. Create an MQTT user: Settings -> People -> Add person: name it something meaningful e.g. "MQTT_user". Allow login, and create a password
+3. Reboot HA
+4. Install the "MQTT" integration (Settings -> Devices and services - > Add Integration)
+    Broker: core-mosquitto
+    Port: 1883
+    Username: (the one created in the 2nd step)
+    Password: (the one created in the 2nd step)
+5. Install Tasmota (Settings -> Devices and services - > Add Integration)
+6. Continue with adding a tasmota device (Tasmota config.txt)
