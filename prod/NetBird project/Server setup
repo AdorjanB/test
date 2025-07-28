@@ -12,5 +12,5 @@ apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-co
 
 # Install NetBird
 mkdir /root/netbird
-cd /etc/netbird
+cd /root/netbird
 export NETBIRD_DOMAIN=netbird.adorjanb.hu; curl -fsSL https://github.com/netbirdio/netbird/releases/latest/download/getting-started-with-zitadel.sh | bash
