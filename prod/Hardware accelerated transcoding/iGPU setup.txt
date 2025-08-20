@@ -8,6 +8,7 @@ On PVE terminal:
         <shows whether the system detects the iGPU>
     intel_gpu_top
         <shows the real time usage of the iGPU>
+    Stop the LXC.
     nano /etc/pve/lxc/100.conf
         Include these lines:
             lxc.cgroup2.devices.allow: c 226:0 rwm
@@ -16,12 +17,29 @@ On PVE terminal:
             lxc.mount.entry: /dev/dri dev/dri none bind,optional,create=dir
             lxc.mount.entry: /dev/dri/card0 dev/dri/card0 none bind,optional,create=file
             lxc.mount.entry: /dev/dri/renderD128 dev/dri/renderD128 none bind,optional,create=file
+    Start LXC
+
 In LXC terminal:
     <update and upgrade packages>
-    apt install intel-media-va-driver vainfo -y
+    apt install intel-media-va-driver intel-gpu-tools vainfo -y
     Maybe needed:
        apt install i965-va-driver -y
-    apt install intel-gpu-tools -y 
     intel_gpu_top
         <shows the real time usage of the iGPU>
-    
+    vainfo
+        Note the media profiles that the encoder supports for later configuring Jellyfin
+
+In Portainer or Docker Compose:
+    include in the stack or compose:
+        devices:
+          - /dev/dri/renderD128:/dev/dri/renderD128
+        environment:
+          - LIBVA_DRIVER_NAME=iHD
+          - VDPAU_DRIVER=va_gl
+    Redeploy the container
+
+In Jellyfin:
+    Dashboard -> Playback -> Transcoding
+        Set VAAPI as hardware method
+        The VA-API Device should match what is included in the LXC config file
+        Chose the formats that "vainfo" stated supported.
