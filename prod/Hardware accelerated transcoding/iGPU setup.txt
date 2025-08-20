@@ -1,0 +1,27 @@
+This manual is intended to use on a Dell OptiPlex 5050 Micro system with Intel i3-7100T CPU.
+The goal is to run Docker in an LXC in PVE, and the Jellyfin Docker container should use hardware transcoding.
+
+On PVE terminal:
+    <update and upgrade packages>
+    apt install intel-media-va-driver intel-gpu-tools vainfo -y
+    vainfo
+        <shows whether the system detects the iGPU>
+    intel_gpu_top
+        <shows the real time usage of the iGPU>
+    nano /etc/pve/lxc/100.conf
+        Include these lines:
+            lxc.cgroup2.devices.allow: c 226:0 rwm
+            lxc.cgroup2.devices.allow: c 226:128 rwm
+            lxc.cgroup2.devices.allow: c 29:0 rwm
+            lxc.mount.entry: /dev/dri dev/dri none bind,optional,create=dir
+            lxc.mount.entry: /dev/dri/card0 dev/dri/card0 none bind,optional,create=file
+            lxc.mount.entry: /dev/dri/renderD128 dev/dri/renderD128 none bind,optional,create=file
+In LXC terminal:
+    <update and upgrade packages>
+    apt install intel-media-va-driver vainfo -y
+    Maybe needed:
+       apt install i965-va-driver -y
+    apt install intel-gpu-tools -y 
+    intel_gpu_top
+        <shows the real time usage of the iGPU>
+    
