@@ -43,3 +43,5 @@ In Jellyfin:
         Set VAAPI as hardware method
         The VA-API Device should match what is included in the LXC config file
         Chose the formats that "vainfo" stated supported.
+
+Check the transcoding while playing, with intel_gpu_top 
