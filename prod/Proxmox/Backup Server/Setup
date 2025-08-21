@@ -1,0 +1,6 @@
+Credit goes to WunderTech (https://www.youtube.com/watch?v=qms3ffm8H_4)
+
+Deploy PBS, and run the helper script.
+mkdir -p /mnt/pbs-backups (to create the datastore in)
+mkdir -p /mnt/temp (to mount the NFS share into)
+chown backup:backup /mnt/pbs-backups
