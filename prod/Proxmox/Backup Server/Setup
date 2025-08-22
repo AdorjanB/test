@@ -1,6 +1,39 @@
 Credit goes to WunderTech (https://www.youtube.com/watch?v=qms3ffm8H_4)
 
+On the NAS: Create an NFS share (e.g. Proxmox-Backup-Server) with everyone RW permission and "all_squash" option (in OMV).
+
 Deploy PBS, and run the helper script.
-mkdir -p /mnt/pbs-backups (to create the datastore in)
-mkdir -p /mnt/temp (to mount the NFS share into)
-chown backup:backup /mnt/pbs-backups
+PBS console:
+    mkdir -p /mnt/pbs-backups (to create the datastore in)
+    mkdir -p /mnt/temp (to mount the NFS share into)
+    chown backup:backup /mnt/pbs-backups
+    nano /etc/fstab
+        192.168.210.245:/Proxmox-Backup-Server /mnt/temp nfs defaults 0 0
+    systemctl daemon-reload && mount -a
+
+PBS WebUI:
+    Add datastore:
+        General tab:
+            Name: OMV
+            Backing Path: /mnt/pbs-backups
+        Prune Options tab:
+            Daily: 7
+            Wekkly: 4
+            Monthly: 2
+            (Keep Last: 13)
+
+PBS console:
+    cp -R /mnt/pbs-backups/.chunks /mnt/pbs-backups/.lock /mnt/temp
+    nano /etc/fstab
+        192.168.210.245:/Proxmox-Backup-Server /mnt/pbs-backups nfs defaults 0 0
+    systemctl daemon-reload && umount /mnt/temp && mount -a
+
+Restart PBS to check persistency.
+
+Proxmox VE:
+    Web UI:
+        Datacenter -> Storage -> Add PBS
+            ID: PBS (or anything)
+            Server: 192.168.210.4
+            Username: root@pam
+            Password: 
